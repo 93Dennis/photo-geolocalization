@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Dies erzeugt eine Variable die immer einen neuen wert zwischen 0-32767 erzeugt
+# Dies erzeugt eine Variable die immer einen neuen Wert zwischen 0-32767 erzeugt
 RANDOM=$$
 
 # Wir setzen die $response auf 0
@@ -13,10 +13,11 @@ touch tmpFile
 # Bis die Anzahl der Items 200 ist wird versucht eine Random id in den Warenkorn zu legen
 until [ $response == 200 ] 
 do
+    # Die Response von curl wind in tmpfile gespeichert
     curl -o .\tmpFile "https://fotoarchiv-stadtarchiv.kiel.de/ax_Downd.FAU?sid=8D8F20621&dm=1&qpos=${RANDOM}&erg=H"
-    # Die Response wind in tmpfile gespeichert
+    # Und in unsere Variable geladen
     response=`cat .tmpFile`
-    # Konsolenoutput der Response (meißtens ein langer Fehler, das das item nicht existiert, sonst die Anzahl der Items im Warenkorb)
+    # Konsolenoutput der Response (meißtens ein langer Fehler, dass das Item nicht existiert, sonst die Anzahl der Items im Warenkorb)
     echo $response
     # Sleepfunktion um den Server nicht zu überlasten (auch bei einer Sekunde schmiert der Server ab... als nächstes 5s ausprobieren)
     sleep 1
