@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<title>Fehler</title>
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="-1">
+<meta http-equiv="x-ua-compatible" content="IE=edge">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="robots" content="index,nofollow">
+<meta name="generator" content="FAUST-iServer 9.0.018.018.4-3:00013-Fotodatenbank-online.cfg">
+<link rel="canonical" href="http://FOTOARCHIV-STADTARCHIV.KIEL.DE"/>
+<style>
+/* globale Tags */
+.div {
+/* Box zur Erfassung der Recherche */
+font-family : Arial, Arial, Helvetica, sans-serif;
+font-size : 120%;
+border: 1px solid #AA0000; 
+background-color: #FFFFFF; padding: 1ex;
+color: #AA0000;
+text-align: center;
+width: 300px;
+margin : 100px auto;
+border-radius: 5px;
+}
+span {font-size : 90%;}
+button {
+margin : 0.5% 0px 0.5% 0.5%;
+padding: 0em 0.5em 0em 0.5em;
+vertical-align : baseline;
+text-decoration : none;
+font-style : normal;
+}
+.but {
+display : block;
+margin-top : 2em;
+}
+.ok{
+font-family : Arial, Arial, Helvetica, sans-serif;
+font-size : 120%;
+padding: 1ex;
+text-align: center;
+width: 300px;
+margin : 100px auto;
+border-radius: 5px;
+border: 1px solid #000000; 
+padding: 1ex;
+background-color: #FFFFFF;
+color: #000000; 
+}
+html, body{
+background-color: #FFFFFF; 
+}
+</style>
+</head>
+<body>
+<div class="div" align="center">
+<img src="/images/warning.png" alt="Fehler" hspace="10" border="0" align="middle">
+Fehler:&nbsp;1 <span class="but">
+Objekt nicht im aktuellen Ergebnis: 427 (onr):22506 </span>
+</div>
+</body>
+</html>
