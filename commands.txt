@@ -10,6 +10,7 @@ python3 match_images.py \
 
 #Extract feature query
 #ACHTUNG: wenn zwischen query und index gewechselt wird auch output_features_dir anpassen
+#ACHTUNG: Im Script muss das Bildformat in Zeile 80 angepasst werden. (z.B. tif und jpg)
 python3 extract_features.py \
   --delf_config_path r50delg_gldv2clean_config.pbtxt \
   --images_dir ./data/Borken/image_data \
