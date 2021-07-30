@@ -1,0 +1,37 @@
+python3 match_images.py \
+  --image_1_path data/TestKiel/foo.jpg \
+  --image_2_path data/TestKiel/Medienarchiv_2.jpg \
+  --features_1_path data/TestKiel_features/foo.jpg \
+  --features_2_path data/TestKiel_features/Medienarchiv_2.jpg \
+  --output_image TestKielMatch.png
+
+
+#From .../cultural-metadata-ai/delg/
+
+#Extract feature query
+#ACHTUNG: wenn zwischen query und index gewechselt wird auch output_features_dir anpassen
+python3 extract_features.py \
+  --delf_config_path r50delg_gldv2clean_config.pbtxt \
+  --images_dir ./data/Borken/image_data \
+  --index_path ./data/Borken/index.csv \
+  --query_path ./data/Borken/query.csv \
+  --image_set query \
+  --output_features_dir ./results/Borken/features/query
+  
+python3 extract_features.py \
+  --delf_config_path r50delg_gldv2clean_config.pbtxt \
+  --images_dir ./data/Borken/image_data \
+  --index_path ./data/Borken/index.csv \
+  --query_path ./data/Borken/query.csv \
+  --image_set index \
+  --output_features_dir ./results/Borken/features/index
+
+#--------------------------------------------------------------------
+
+#Perform retrieval
+python3 perform_retrieval.py \
+  --index_path ./data/Borken/index.csv \
+  --query_path ./data/Borken/query.csv \
+  --query_features_dir ./results/Borken/features/query \
+  --index_features_dir ./results/Borken/features/index \
+  --output_dir ./results/Borken/final
