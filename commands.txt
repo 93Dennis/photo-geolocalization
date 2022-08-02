@@ -1,16 +1,10 @@
-python3 match_images.py \
-  --image_1_path data/TestKiel/foo.jpg \
-  --image_2_path data/TestKiel/Medienarchiv_2.jpg \
-  --features_1_path data/TestKiel_features/foo.jpg \
-  --features_2_path data/TestKiel_features/Medienarchiv_2.jpg \
-  --output_image TestKielMatch.png
+# Create the needed query and index CSVs
+python3 create_csv.py --images_path ./delg/workspace/images --index_path ./delg/workspace/data/index.csv --query_path ./delg/workspace/data/query.csv --query_images 1976_Weseke_Kirche_02
 
-
-#From .../cultural-metadata-ai/delg/
-
-#Extract feature query
-#ACHTUNG: wenn zwischen query und index gewechselt wird auch output_features_dir anpassen
-#ACHTUNG: Im Script muss das Bildformat in Zeile 80 angepasst werden. (z.B. tif und jpg)
+# Run from .../cultural-metadata-ai/delg/
+# Extract feature query
+# ACHTUNG: wenn zwischen query und index gewechselt wird auch output_features_dir anpassen
+# ACHTUNG: Im Script muss das Bildformat in Zeile 80 angepasst werden. (z.B. tif und jpg)
 python3 extract_features.py \
   --delf_config_path r50delg_gldv2clean_config.pbtxt \
   --images_dir ./data/Borken/image_data \
@@ -19,20 +13,35 @@ python3 extract_features.py \
   --image_set query \
   --output_features_dir ./results/Borken/features/query
   
-python3 extract_features.py \
-  --delf_config_path r50delg_gldv2clean_config.pbtxt \
-  --images_dir ./data/Borken/image_data \
-  --index_path ./data/Borken/index.csv \
-  --query_path ./data/Borken/query.csv \
-  --image_set index \
-  --output_features_dir ./results/Borken/features/index
+_____
+
+DENNIS CUSTOM
+python3 extract_features.py --delf_config_path r50delg_gldv2clean_config.pbtxt --images_dir ./workspace/images --index_path ./workspace/data/index.csv --query_path ./workspace/data/query.csv --image_set query --output_features_dir ./workspace/results/features/query
+
+python3 extract_features.py --delf_config_path r50delg_gldv2clean_config.pbtxt --images_dir ./workspace/images --index_path ./workspace/data/index.csv --query_path ./workspace/data/query.csv --image_set index --output_features_dir ./workspace/results/features/index
+____
 
 #--------------------------------------------------------------------
 
-#Perform retrieval
+# Perform retrieval
 python3 perform_retrieval.py \
   --index_path ./data/Borken/index.csv \
   --query_path ./data/Borken/query.csv \
   --query_features_dir ./results/Borken/features/query \
-  --index_features_dir ./results/Borken/features/index \
+  --index_features_dir ./results/Borken/featuresmk /index \
   --output_dir ./results/Borken/final
+
+python3 perform_retrieval.py --index_path ./workspace/data/index.csv --query_path ./workspace/data/query.csv --query_features_dir ./workspace/results/features/query --index_features_dir ./workspace/results/features/index --output_dir ./workspace/results/final
+____
+
+# Create comparison image by using the features.
+# Run from models\research\delf\delf\python\examples
+
+python3 match_images.py \
+  --image_1_path data/TestKiel/foo.jpg \
+  --image_2_path data/TestKiel/Medienarchiv_2.jpg \
+  --features_1_path data/TestKiel_features/foo.jpg \
+  --features_2_path data/TestKiel_features/Medienarchiv_2.jpg \
+  --output_image TestKielMatch.png
+
+python3 match_images.py --image_1_path ./workspace/images/1976_Weseke_Kirche_02.tif --image_2_path ./workspace/images/1976_Weseke_Kirche_01.tif --features_1_path ./workspace/results/features/query/1976_Weseke_Kirche_02.delg_local --features_2_path ./workspace/results/features/index/1976_Weseke_Kirche_01.delg_local --output_image ./workspace/results/match/Match-1976_Weseke_Kirche_02-1976_Weseke_Kirche_01.png

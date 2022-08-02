@@ -1,0 +1,4 @@
+__pycache__
+delg/workspace/images/*
+delg/workspace/results/*
+delg/parameters/*

@@ -1,37 +1,37 @@
-#Git installieren
+# Git installieren
 sudo apt install git
 
-#Git clonen:
+# Tensorflow Models Repository clonen:
 git clone https://github.com/tensorflow/models.git
-#Eigenes git clonen
 
+# Eigenes git clonen
+git clone https://github.com/93Dennis/cultural-metadata-ai.git
 cd models/research/delf/delf/python/training
 
-#Install Python
+# Install Python
 sudo apt install python3-pip
 
-#Install curl
+# Install curl
 sudo apt install curl
 
-#Im Installationsscript Zeile 111 (/research/delf/delf/python/training/install_delf.sh):
+# Im Installationsscript Zeile 111 anpassen (/research/delf/delf/python/training/install_delf.sh):
 cd ../../../../object_detection/packages/tf1
 
-#Install object detection
+# Install object detection
 pip install tensorflow-object-detection-api
 
-#modules einbinden [ACHTUNG PFAD ANPASSEN!]
-PYTHONPATH=$PYTHONPATH:/home/valentin/FH_Kiel/models/research/delf:/home/valentin/FH_Kiel/cultural-metadata-ai
+# modules einbinden [ACHTUNG PFAD ANPASSEN!]
+PYTHONPATH=$PYTHONPATH:/home/[user]/forschungsprojekt/models/research/delf:/home/[user]/forschungsprojekt/cultural-metadata-ai
 export PYTHONPATH
 
-#Installationsscript ausführen(https://github.com/tensorflow/models/blob/master/research/delf/INSTALL_INSTRUCTIONS.md): 
+# Installationsscript ausführen (https://github.com/tensorflow/models/blob/master/research/delf/INSTALL_INSTRUCTIONS.md): 
 # From models/research/delf/delf/python/training
 bash install_delf.sh
 
-#Eigenes git clonen
-
-# R50-DELG-GLD model.
-wget http://storage.googleapis.com/delf/r50delg_gld_20200814.tar.gz
-tar -xvzf r50delg_gld_20200814.tar.gz
+# R50-DELG-GLDv2-clean Model in parameters Ordner laden
+# From cultural-metadata-ai/delg/parameters
+wget https://storage.googleapis.com/delf/r50delg_gldv2clean_20200914.tar.gz
+tar -xvzf r50delg_gldv2clean_20200914.tar.gz
 
 
 

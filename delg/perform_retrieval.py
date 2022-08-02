@@ -34,9 +34,9 @@ from delg import image_reranking
 
 FLAGS = flags.FLAGS
 
-flags.DEFINE_string(
-    'dataset_file_path', '/tmp/gnd_roxford5k.mat',
-    'Dataset file for Revisited Oxford or Paris dataset, in .mat format.')
+#flags.DEFINE_string(
+    #'dataset_file_path', '/tmp/gnd_roxford5k.mat',
+    #'Dataset file for Revisited Oxford or Paris dataset, in .mat format.')
 flags.DEFINE_string('query_features_dir', '/tmp/features/query',
                     'Directory where query DELG features are located.')
 flags.DEFINE_string('index_features_dir', '/tmp/features/index',
@@ -65,11 +65,11 @@ flags.DEFINE_string(
     "metrics for this run is saved therein, with file name 'metrics.txt'.")
 flags.DEFINE_string(
     'index_path', '/',
-    'Path to .csv file where all index images are listed in a single row seperated by a comma'
+    'Path to .csv file where all index images are listed, each in a separate row.'
     )
 flags.DEFINE_string(
     'query_path', '/',
-    'Path to .csv file where all query images are listed in a single row seperated by a comma'
+    'Path to .csv file where all query images are listed, each in a separate row.'
     )
 
 # Extensions.
@@ -128,13 +128,12 @@ def main(argv):
   with open(FLAGS.index_path) as csvfile:
     reader = csv.reader(csvfile)
     for row in reader: # each row is a list
-      index_list = row
+      index_list.append(row[0]) # <- das hier wurde geändert
         
   with open(FLAGS.query_path) as csvfile:
     reader = csv.reader(csvfile) 
     for row in reader: # each row is a list
-      query_list = row
-      
+      query_list.append(row[0]) # <- das hier wurde geändert
   num_query_images = len(query_list)
   num_index_images = len(index_list)
 
@@ -196,24 +195,24 @@ def main(argv):
   
 
   # Compute metrics.
-  #medium_metrics = dataset.ComputeMetrics(ranks_before_gv, medium_ground_truth, _PR_RANKS)
-  #hard_metrics = dataset.ComputeMetrics(ranks_before_gv, hard_ground_truth, _PR_RANKS)
-  #if FLAGS.use_geometric_verification:
-    #medium_metrics_after_gv = dataset.ComputeMetrics(medium_ranks_after_gv, medium_ground_truth, _PR_RANKS)
-    #hard_metrics_after_gv = dataset.ComputeMetrics(hard_ranks_after_gv, hard_ground_truth, _PR_RANKS)
+  # medium_metrics = dataset.ComputeMetrics(ranks_before_gv, medium_ground_truth, _PR_RANKS)
+  # hard_metrics = dataset.ComputeMetrics(ranks_before_gv, hard_ground_truth, _PR_RANKS)
+  # if FLAGS.use_geometric_verification:
+    # medium_metrics_after_gv = dataset.ComputeMetrics(medium_ranks_after_gv, medium_ground_truth, _PR_RANKS)
+    # hard_metrics_after_gv = dataset.ComputeMetrics(hard_ranks_after_gv, hard_ground_truth, _PR_RANKS)
 
   # Write metrics to file.
-  #mean_average_precision_dict = {
-  #    'medium': medium_metrics[0],
-  #    'hard': hard_metrics[0]
-  #}
-  #mean_precisions_dict = {'medium': medium_metrics[1], 'hard': hard_metrics[1]}
-  #mean_recalls_dict = {'medium': medium_metrics[2], 'hard': hard_metrics[2]}
-  #if FLAGS.use_geometric_verification:
-    #mean_average_precision_dict.update({'medium_after_gv': medium_metrics_after_gv[0], 'hard_after_gv': hard_metrics_after_gv[0]})
-    #mean_precisions_dict.update({'medium_after_gv': medium_metrics_after_gv[1],'hard_after_gv': hard_metrics_after_gv[1]})
-    #mean_recalls_dict.update({'medium_after_gv': medium_metrics_after_gv[2],'hard_after_gv': hard_metrics_after_gv[2]})
-  #dataset.SaveMetricsFile(mean_average_precision_dict, mean_precisions_dict, mean_recalls_dict, _PR_RANKS, os.path.join(FLAGS.output_dir, _METRICS_FILENAME))
+  # mean_average_precision_dict = {
+      # 'medium': medium_metrics[0],
+      # 'hard': hard_metrics[0]
+  # }
+  # mean_precisions_dict = {'medium': medium_metrics[1], 'hard': hard_metrics[1]}
+  # mean_recalls_dict = {'medium': medium_metrics[2], 'hard': hard_metrics[2]}
+  # if FLAGS.use_geometric_verification:
+    # mean_average_precision_dict.update({'medium_after_gv': medium_metrics_after_gv[0], 'hard_after_gv': hard_metrics_after_gv[0]})
+    # mean_precisions_dict.update({'medium_after_gv': medium_metrics_after_gv[1],'hard_after_gv': hard_metrics_after_gv[1]})
+    # mean_recalls_dict.update({'medium_after_gv': medium_metrics_after_gv[2],'hard_after_gv': hard_metrics_after_gv[2]})
+  # dataset.SaveMetricsFile(mean_average_precision_dict, mean_precisions_dict, mean_recalls_dict, _PR_RANKS, os.path.join(FLAGS.output_dir, _METRICS_FILENAME))
 
 
 if __name__ == '__main__':

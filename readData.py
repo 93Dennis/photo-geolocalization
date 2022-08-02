@@ -1,3 +1,5 @@
+# WORK IN PROGRESS
+
 from absl import app
 from absl import flags
 
@@ -29,8 +31,8 @@ def main(argv):
             print(i)
             for imageName in index_list:
               if i["name"] == imageName+extension:
-                imageName=i
-                locationName=record['ort']:
+                imageName = i
+                locationName = record['ort']
                 histImage = HistImage(name="i")
                 allImages.append(histImage)
                 print(i)
