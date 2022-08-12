@@ -1,7 +1,18 @@
 # Create the needed query and index CSVs
+# Run from .../photo-geolocalization/
+
+python3 create_csv.py
+  --images_path ./delg/workspace/images
+  --index_path ./delg/workspace/data/index.csv
+  --query_path ./delg/workspace/data/query.csv
+  --query_images 1976_Weseke_Kirche_02
+
+# For WSL
 python3 create_csv.py --images_path ./delg/workspace/images --index_path ./delg/workspace/data/index.csv --query_path ./delg/workspace/data/query.csv --query_images 1976_Weseke_Kirche_02
 
-# Run from .../cultural-metadata-ai/delg/
+#--------------------------------------------------------------------
+
+# Run from .../photo-geolocalization/delg/
 # Extract feature query
 # ACHTUNG: wenn zwischen query und index gewechselt wird auch output_features_dir anpassen
 # ACHTUNG: Im Script muss das Bildformat in Zeile 80 angepasst werden. (z.B. tif und jpg)
@@ -13,17 +24,15 @@ python3 extract_features.py \
   --image_set query \
   --output_features_dir ./results/Borken/features/query
   
-_____
-
-DENNIS CUSTOM
+# For WSL
 python3 extract_features.py --delf_config_path r50delg_gldv2clean_config.pbtxt --images_dir ./workspace/images --index_path ./workspace/data/index.csv --query_path ./workspace/data/query.csv --image_set query --output_features_dir ./workspace/results/features/query
-
 python3 extract_features.py --delf_config_path r50delg_gldv2clean_config.pbtxt --images_dir ./workspace/images --index_path ./workspace/data/index.csv --query_path ./workspace/data/query.csv --image_set index --output_features_dir ./workspace/results/features/index
-____
 
 #--------------------------------------------------------------------
 
 # Perform retrieval
+# Run from .../photo-geolocalization/delg/
+
 python3 perform_retrieval.py \
   --index_path ./data/Borken/index.csv \
   --query_path ./data/Borken/query.csv \
@@ -31,11 +40,25 @@ python3 perform_retrieval.py \
   --index_features_dir ./results/Borken/featuresmk /index \
   --output_dir ./results/Borken/final
 
+# For WSL
 python3 perform_retrieval.py --index_path ./workspace/data/index.csv --query_path ./workspace/data/query.csv --query_features_dir ./workspace/results/features/query --index_features_dir ./workspace/results/features/index --output_dir ./workspace/results/final
-____
+
+#--------------------------------------------------------------------
+
+# Get results txt with location metadata from Landesmuseum Baden JSON file
+# Run from .../photo-geolocalization/
+
+python3 get_metadata_results.py \
+  --results_path delg/workspace/results/final/BA 2020-00001-034_Scan01_result.txt
+  --json_path delg/workspace/metadata/blmki_bildarchivstaufen.json
+
+# For WSL
+python3 get_metadata_results.py --results_path delg/workspace/results/final/BA 2020-00001-034_Scan01_result.txt --json_path delg/workspace/metadata/blmki_bildarchivstaufen.json
+
+#--------------------------------------------------------------------
 
 # Create comparison image by using the features.
-# Run from models\research\delf\delf\python\examples
+# Run from .../photo-geolocalization/delg/
 
 python3 match_images.py \
   --image_1_path data/TestKiel/foo.jpg \
@@ -44,4 +67,5 @@ python3 match_images.py \
   --features_2_path data/TestKiel_features/Medienarchiv_2.jpg \
   --output_image TestKielMatch.png
 
+# For WSL
 python3 match_images.py --image_1_path ./workspace/images/1976_Weseke_Kirche_02.tif --image_2_path ./workspace/images/1976_Weseke_Kirche_01.tif --features_1_path ./workspace/results/features/query/1976_Weseke_Kirche_02.delg_local --features_2_path ./workspace/results/features/index/1976_Weseke_Kirche_01.delg_local --output_image ./workspace/results/match/Match-1976_Weseke_Kirche_02-1976_Weseke_Kirche_01.png

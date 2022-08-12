@@ -77,7 +77,7 @@ flags.DEFINE_string(
 # Extensions.
 _DELG_GLOBAL_EXTENSION = '.delg_global'
 _DELG_LOCAL_EXTENSION = '.delg_local'
-_IMAGE_EXTENSION = '.tif'
+_IMAGE_EXTENSION = '.jpg'
 
 # Pace to report extraction log.
 _STATUS_CHECK_ITERATIONS = 50
@@ -96,12 +96,12 @@ def main(argv):
   with open(FLAGS.index_path) as csvfile:
     reader = csv.reader(csvfile)
     for row in reader: # each row is a list
-      index_list.append(row[0]) # <- das hier wurde geändert
+      index_list.append(row[0])
         
   with open(FLAGS.query_path) as csvfile:
     reader = csv.reader(csvfile) 
     for row in reader: # each row is a list
-      query_list.append(row[0]) # <- das hier wurde geändert
+      query_list.append(row[0])
 
   if FLAGS.image_set == 'query':
     image_list = query_list

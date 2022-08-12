@@ -1,3 +1,5 @@
+#TODO: Clean up
+
 # Git installieren
 sudo apt install git
 
@@ -21,7 +23,7 @@ cd ../../../../object_detection/packages/tf1
 pip install tensorflow-object-detection-api
 
 # modules einbinden [ACHTUNG PFAD ANPASSEN!]
-PYTHONPATH=$PYTHONPATH:/home/[user]/forschungsprojekt/models/research/delf:/home/[user]/forschungsprojekt/cultural-metadata-ai
+PYTHONPATH=$PYTHONPATH:/home/dennis/forschungsprojekt/models/research/delf:/home/dennis/forschungsprojekt/cultural-metadata-ai
 export PYTHONPATH
 
 # Installationsscript ausführen (https://github.com/tensorflow/models/blob/master/research/delf/INSTALL_INSTRUCTIONS.md): 

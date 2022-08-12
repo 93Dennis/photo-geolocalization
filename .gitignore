@@ -1,4 +1,6 @@
 __pycache__
 delg/workspace/images/*
+delg/workspace/images_borken
 delg/workspace/results/*
+delg/workspace/metadata/*
 delg/parameters/*

@@ -301,9 +301,9 @@ def RerankByGeometricVerification(input_ranks,
       range(num_index_images), key=_InliersInitialScoresSorting, reverse=True)
       
   
-  result = np.zeros([len(output_ranks), 3], dtype='int')
+  result = np.zeros([num_to_rerank, 3], dtype='int')
   
-  for i in range(len(output_ranks)):
+  for i in range(num_to_rerank):
     print(output_ranks[i])
     result[i][0]=output_ranks[i]
     result[i][1]=inliers_and_initial_scores[output_ranks[i]][0]
