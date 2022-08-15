@@ -42,7 +42,7 @@ def main(argv):
     write_to_file(FLAGS.query_path, query_images)
     print('%i images successfully saved as query: %s' % (len(query_images), str(query_images)))
 
-  # if no query specified, choose random query images
+  # if no query specified and random images > 0, choose random query images
   elif FLAGS.random_query > 0:
     for (root, dirs, files) in os.walk(FLAGS.images_path):
       files = random.sample(files, FLAGS.random_query)

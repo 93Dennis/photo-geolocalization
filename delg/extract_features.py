@@ -63,6 +63,8 @@ flags.DEFINE_string(
 flags.DEFINE_string(
     'images_dir', '/tmp/images',
     'Directory where dataset images are located, all in .jpg format.')
+flags.DEFINE_enum('image_extension', '.tif', ['.tif', '.jpg', '.jpeg', '.png'],
+              'The file extension of the images to extract features from.')
 flags.DEFINE_enum('image_set', 'query', ['query', 'index'],
                   'Whether to extract features from query or index images.')
 flags.DEFINE_string(
@@ -77,7 +79,7 @@ flags.DEFINE_string(
 # Extensions.
 _DELG_GLOBAL_EXTENSION = '.delg_global'
 _DELG_LOCAL_EXTENSION = '.delg_local'
-_IMAGE_EXTENSION = '.jpg'
+_IMAGE_EXTENSION = FLAGS.image_extension
 
 # Pace to report extraction log.
 _STATUS_CHECK_ITERATIONS = 50
