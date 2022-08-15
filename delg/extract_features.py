@@ -63,7 +63,7 @@ flags.DEFINE_string(
 flags.DEFINE_string(
     'images_dir', '/tmp/images',
     'Directory where dataset images are located, all in .jpg format.')
-flags.DEFINE_enum('image_extension', '.tif', ['.tif', '.jpg', '.jpeg', '.png'],
+flags.DEFINE_enum('image_extension', '.jpg', ['.tif', '.jpg', '.jpeg', '.png'],
               'The file extension of the images to extract features from.')
 flags.DEFINE_enum('image_set', 'query', ['query', 'index'],
                   'Whether to extract features from query or index images.')
