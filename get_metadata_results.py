@@ -1,6 +1,14 @@
-# this file reads the results, adds the corresponding lat & lon metadata
-# provided by the the Landesmuseum Baden in json format
+###
+#
+# @Author:
+# Dennis Przytarski: dennis.przytarski@gmx.de
+#
+# @Description: 
+# This file reads the results, adds the corresponding lat & lon metadata
+# provided by the the Landesmuseum Baden in json format to all results
 # and saves it as new txt file
+#
+###
 
 from absl import app
 from absl import flags

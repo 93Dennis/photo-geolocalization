@@ -1,5 +1,13 @@
 #!/bin/bash
 
+###
+#
+# @Authors:
+# Dennis Przytarski: dennis.przytarski@gmx.de
+# Valentin Strauß: valentin.strauss@dataport.de
+#
+###
+
 # Dies erzeugt eine Variable die immer einen neuen Wert zwischen 0-32767 erzeugt
 RANDOM=$$
 

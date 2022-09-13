@@ -1,3 +1,14 @@
+###
+#
+# @Authors:
+# Dennis Przytarski: dennis.przytarski@gmx.de
+# Valentin Strauß: valentin.strauss@dataport.de
+#
+# @Description: 
+# This file converts greyscale to RGB
+#
+###
+
 from PIL import Image
 
 #img = Image.open("./Medienarchiv_2.jpg")

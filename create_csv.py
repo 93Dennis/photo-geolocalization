@@ -1,3 +1,14 @@
+###
+#
+# @Authors:
+# Dennis Przytarski: dennis.przytarski@gmx.de
+# Valentin Strauß: valentin.strauss@dataport.de
+#
+# @Description: 
+# This file creates CSVs for custom Image Retrieval with DELG
+#
+###
+
 import os, csv
 from absl import app
 from absl import flags

@@ -5,10 +5,12 @@ python3 create_csv.py
   --images_path ./delg/workspace/images
   --index_path ./delg/workspace/data/index.csv
   --query_path ./delg/workspace/data/query.csv
-  --query_images 1976_Weseke_Kirche_02
+  --query_images [image(s)_without_ext]
+  [optional: --index_images [names]]
+  [optional: --random_query [count]]
 
 # For WSL
-python3 create_csv.py --images_path ./delg/workspace/images --index_path ./delg/workspace/data/index.csv --query_path ./delg/workspace/data/query.csv --query_images 1976_Weseke_Kirche_02
+python3 create_csv.py --images_path ./delg/workspace/images --index_path ./delg/workspace/data/index.csv --query_path ./delg/workspace/data/query.csv --query_images 1976_Raesfeld_Schloss_03 --index_images 1976_Alstätte_Kirche_Skt_Maria_Himmelfahrt_01,1976_Raesfeld_Schloss_01,1976_Weseke_Kirche
 
 #--------------------------------------------------------------------
 
@@ -48,12 +50,21 @@ python3 perform_retrieval.py --index_path ./workspace/data/index.csv --query_pat
 # Get results txt with location metadata from Landesmuseum Baden JSON file
 # Run from .../photo-geolocalization/
 
+# Get all results
 python3 get_metadata_results.py \
-  --results_path delg/workspace/results/final/BA 2020-00001-034_Scan01_result.txt
+  --results_path 'delg/workspace/results/final/BA 2020-00001-034_Scan01_result.txt'
   --json_path delg/workspace/metadata/blmki_bildarchivstaufen.json
 
 # For WSL
-python3 get_metadata_results.py --results_path delg/workspace/results/final/BA 2020-00001-034_Scan01_result.txt --json_path delg/workspace/metadata/blmki_bildarchivstaufen.json
+python3 get_metadata_results.py --results_path 'delg/workspace/results/final/BA 2020-00001-006_Scan01_result.txt' --json_path delg/workspace/metadata/blmki_bildarchivstaufen.json
+
+# Get the first result
+python3 get_metadata_result.py \
+  --results_path 'delg/workspace/results/final/BA 2020-00001-034_Scan01_result.txt'
+  --json_path delg/workspace/metadata/blmki_bildarchivstaufen.json
+
+# For WSL
+python3 get_metadata_result.py --results_path 'delg/workspace/results/archive/Test-1_20-zufaellige-Bilder/baden/BA 2020-00001-109_Scan01_result.txt' --json_path delg/workspace/metadata/blmki_bildarchivstaufen.json
 
 #--------------------------------------------------------------------
 
@@ -68,4 +79,4 @@ python3 match_images.py \
   --output_image TestKielMatch.png
 
 # For WSL
-python3 match_images.py --image_1_path ./workspace/images/1976_Weseke_Kirche_02.tif --image_2_path ./workspace/images/1976_Weseke_Kirche_01.tif --features_1_path ./workspace/results/features/query/1976_Weseke_Kirche_02.delg_local --features_2_path ./workspace/results/features/index/1976_Weseke_Kirche_01.delg_local --output_image ./workspace/results/match/Match-1976_Weseke_Kirche_02-1976_Weseke_Kirche_01.png
+python3 match_images.py --image_1_path ./workspace/images/1978_Wohngebiet_südl._Rhede_04.tif --image_2_path ./workspace/images/1976_Ahaus_Bus-Bahnhof_03.tif --features_1_path ./workspace/results/features/query/1978_Wohngebiet_südl._Rhede_04.delg_local --features_2_path ./workspace/results/features/index/1976_Ahaus_Bus-Bahnhof_03.delg_local --output_image ./workspace/results/match/1978_Wohngebiet_südl._Rhede_04-1976_Ahaus_Bus-Bahnhof_03.png
